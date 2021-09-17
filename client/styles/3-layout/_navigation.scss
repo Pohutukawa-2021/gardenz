@@ -81,11 +81,11 @@
     align-items: center;
     width:100vw;
     height: 50vh;
-    z-index: 100;
+    z-index: 9999;
     animation: growDown 300ms ease-in-out forwards;
     transform-origin: top center;
     position: relative;
-    left: -241px;
+    left: -1rem;
     top: 0;
 
     @keyframes growDown {
