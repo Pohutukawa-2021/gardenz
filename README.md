@@ -69,11 +69,6 @@ update users set is_admin = 1 where id = <<the id you want to update>>;
 1. As a garden administrator, I want to see event volunteers.
 1. As a garden administrator, I want to track event volunteers.
 
-
-## User interface / Wireframes  (proposal)
-
-[Wireframe source on Whimsical](https://whimsical.com/Rf7Fo4MEMGxm5eLQ4uLYTA)
-
 ## API routes (proposal)
 
 Failure response (HTTP status: 500):
