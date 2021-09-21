@@ -8,8 +8,9 @@ const secret = process.env.AUTH0_API_EXPLORER_SECRET
 
 const getUserRoles = async (uid) => {
   const accessToken = await getAccessToken()
-  const { body } = await request(`${domain}/api/v2/users/${uid}/roles`)
-    .set({ authorization: `Bearer ${accessToken}` })
+  const { body } = await request(`${domain}/api/v2/users/${uid}/roles`).set({
+    authorization: `Bearer ${accessToken}`
+  })
 
   return body[0]?.name
 }
@@ -22,10 +23,15 @@ const getAccessToken = async () => {
     audience: `${domain}/api/v2/`
   }
 
-  const { body } = await request.post(`${domain}/oauth/token`)
-    .send(data)
-    .type('form')
-  return body.access_token
+  try {
+    const { body } = await request
+      .post(`${domain}/oauth/token`)
+      .send(data)
+      .type('form')
+    return body.access_token
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // Authorization middleware. When used, the
