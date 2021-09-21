@@ -60,6 +60,14 @@ test('Admin can login & add event', async () => {
 
   await page.waitForSelector('text=Log out')
   expect(await page.content()).toMatch(/Log out/)
+  // Awaits for the user data to be fetched from the server
+  await Promise.all([
+    page.waitForResponse('**/api/v1/users/**', (route) =>
+      route.fulfill({
+        status: 200
+      })
+    )
+  ])
 
   await Promise.all([page.waitForNavigation(), page.click('text=My Garden')])
 

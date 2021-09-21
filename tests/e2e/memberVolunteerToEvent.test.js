@@ -52,6 +52,15 @@ test('Member can Login & Volunteer', async () => {
     page.click('button[type=submit]', { force: true })
   ])
 
+  // Awaits for the user data to be fetched from the server
+  await Promise.all([
+    page.waitForResponse('**/api/v1/users/**', (route) =>
+      route.fulfill({
+        status: 200
+      })
+    )
+  ])
+
   await Promise.all([page.waitForNavigation(), page.click('text=My Garden')])
   expect(await page.url()).toBe(`${serverUrl}/gardens/1`)
 
